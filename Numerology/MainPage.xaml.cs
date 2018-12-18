@@ -13,9 +13,10 @@ namespace Numerology
         {
             InitializeComponent();
         }
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+
+        private async void AnswerPage()
         {
-            this.Frame.Navigate(typeof(AnswerPage));
+            await Navigation.PushAsync(new AnswerPage(numerologyCalc.Text));
         }
 
         private void Date_Of_Birth(object sender, EventArgs e)
@@ -23,7 +24,7 @@ namespace Numerology
             // declaration of variables
             int day = 0, day2 = 0, month = 0, month2 = 0;
             int centuryYear = 0, centuryYear2 = 0, decadeYear = 0, decadeYear2 = 0;
-            int numerology = 0;
+            int numerology = 0, breakdown=0, breakdown2=0, test=0;
 
             //conversion of String to interger
             day = Convert.ToInt16(entryDay.Text);
@@ -49,72 +50,49 @@ namespace Numerology
             //test for correct entry
 
             month2 = month % 10;
-            month -= month2;
+            if (month > 9)
+            {
+                month = 1;
+            }
+            else
+            {
+                month = 0;
+            }
+            month += month2;
 
             //assign to numerology
             numerology += month;
-            if (numerology == 10)
-            {
-                numerology = 1;
-            }
-            numerology += month2;
 
             //calculate year
             centuryYear = Convert.ToInt16(entryYear.Text);
-            //test for correct entry
 
             //breaking down to individual digits
             centuryYear -= decadeYear = centuryYear % 100;
-            centuryYear /= 1000;
             centuryYear2 = ((centuryYear / 100) % 10);
+            centuryYear /= 1000;
             decadeYear2 = decadeYear % 10;
             decadeYear = (decadeYear - decadeYear2) / 10;
 
-            numerology += centuryYear;
-            if (numerology > 9)
-            {
-                centuryYear = numerology % 10;
-                numerology = (numerology / 10) + centuryYear;
-            }//create function LLL above9Test(numerology,value)
-
-            numerology += centuryYear2;
-            if (numerology > 9)
-            {
-                centuryYear2 = numerology % 10;
-                numerology = (numerology / 10) + centuryYear2;
-            }
-
-            numerology += decadeYear;
-            if (numerology > 9)
-            {
-                decadeYear = numerology % 10;
-                numerology = (numerology / 10) + decadeYear;
-            }
-
-            numerology += decadeYear2;
-            if (numerology > 9)
-            {
-                decadeYear2 = numerology % 10;
-                numerology = (numerology / 10) + decadeYear2;
-            }
-            switch (numerology)
-            {
-                case 10:
-                    numerology = 1;
-                    break;
-                case 11:
-                    numerology = 11;
-                    break;
-                case 22:
-                    numerology = 22;
-                    break;
-                case 33:
-                    numerology = 33;
-                    break;
-            }//switch
-             //return String format
-             numerologyCalc.Text = " Your Numerology is \n" + "  \t\t" + numerology;
+              test = numerology += centuryYear + centuryYear2 + decadeYear + decadeYear2;
             
+            if (numerology > 9 && !(numerology == 11) && !(numerology == 22) && !(numerology == 33)))
+            {
+                breakdown2 = numerology % 10;
+                breakdown = numerology/10;
+                numerology = breakdown + breakdown2;
+                if (numerology == 10)
+                {
+                    numerology = 1;
+                }//innerIf
+            }//if
+
+            //return String format
+            numerologyCalc.Text = " "+ numerology ;
+
+            testing.Text = " actual number "+ test +" 1st digit " + breakdown+ " 2nd digit  " + breakdown2 ;  
+
+            //call answerPage
+            AnswerPage();
         }
 
     }

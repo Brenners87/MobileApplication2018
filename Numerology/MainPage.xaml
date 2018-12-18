@@ -6,26 +6,24 @@
              BackgroundImage="Assets\mainbackground.png" >
 
     <StackLayout VerticalOptions="Center">
-    
+
         <!--fields for value entry -->
         <Label Text="Enter Date of Birth" TextColor="LightCyan" FontAttributes="Italic" FontSize="25"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
         <Grid  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300">
-            <Grid HorizontalOptions="Start" WidthRequest="85">
-                <Entry BackgroundColor="Ivory"  x:Name="entryDay"  Placeholder="DD"/>
+            <Grid HorizontalOptions="Start" WidthRequest="96">
+                <Entry BackgroundColor="Ivory"  x:Name="entryDay"  Placeholder="DD" HorizontalTextAlignment="Center"/>
             </Grid>
-            <Grid HorizontalOptions="Center" WidthRequest="85" >
-                <Entry BackgroundColor="Ivory"  x:Name="entryMonth"  Placeholder="MM"/>
+            <Grid HorizontalOptions="Center" WidthRequest="90" >
+                <Entry BackgroundColor="Ivory"  x:Name="entryMonth"  Placeholder="MM" HorizontalTextAlignment="Center"/>
             </Grid>
             <Grid  HorizontalOptions="End" WidthRequest="100">
-                <Entry BackgroundColor="Ivory"  x:Name="entryYear"  Placeholder="YYYYY"/>
+                <Entry BackgroundColor="Ivory"  x:Name="entryYear"  Placeholder="YYYYY" HorizontalTextAlignment="Center"/>
             </Grid>
         </Grid>
-        <Button TextColor="AliceBlue" Text="Answer" FontSize="20" HorizontalOptions="Center" VerticalOptions="Start" Command="NavigationCommands.GoToPage" CommandParameter="/AnswerPage.xaml"   Clicked="Date_Of_Birth"/>
+        <Button TextColor="AliceBlue" Text="Answer" FontSize="20" HorizontalOptions="Center" VerticalOptions="Start" Clicked="Date_Of_Birth" />
         <!--Numerology calculation return-->
-        <Label x:Name="numerologyCalc" FontSize="25" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-        <HyperlinkButton Content="Click to go to page 2"
-                 Click="HyperlinkButton_Click"
-                 HorizontalAlignment="Center"/>
-    </StackLayout >
+        <Label x:Name="numerologyCalc" FontSize="1" TextColor="Black" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        <Label x:Name="testing" FontSize="10" TextColor="white" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+    </StackLayout>
 
 </ContentPage>
