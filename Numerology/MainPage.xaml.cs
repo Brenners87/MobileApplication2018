@@ -19,33 +19,37 @@ namespace Numerology
             await Navigation.PushAsync(new AnswerPage(numerologyCalc.Text));
         }
 
-        //validate Entry
+        //validate Day Entry
         private void DayValid( object sender,EventArgs text)
-        {
+        { 
             //eliminates backspace crash on computer operation
             if (!string.IsNullOrWhiteSpace(entryDay.Text))
             {
                 int day = 0;
                 day = Convert.ToInt16(entryDay.Text);
-                if (day < 0 || day > 31)
+                if (day < 01 || day > 31)
                 {
                     DisplayAlert("Day", "Invalid Entry\n  Enter between 1 - 31", "Retry");
                 }//innerIf
             }//if
         }
 
+        //validate Month Entry
         private void MonthValid(object sender, TextChangedEventArgs text)
         {
-            int month = 0, day = 0, dayCheck=0;
-            month = Convert.ToInt16(entryMonth.Text);
-
+            int dayCheck = 0;
+           
             if (!string.IsNullOrWhiteSpace(entryMonth.Text))
             {
-                if (month < 0 || month > 12)
+                int month = 0;
+                month = Convert.ToInt16(entryMonth.Text);
+
+                if (month < 01 || month > 12)
                 {
                     DisplayAlert("Month", "Invalid Entry\n Enter between 1 - 12", "Retry");
                 }//innerIf
 
+                //further validation of Day/Month compatible
                 dayCheck = Convert.ToInt16(entryDay.Text);
                 switch (month)
                 {
@@ -93,24 +97,27 @@ namespace Numerology
             }//largeIf
         }
 
+        //validate  Year Entry
         private void YearValid()
         {
             if (!string.IsNullOrWhiteSpace(entryYear.Text))
             { 
                 int year = 0;
                 year = Convert.ToInt16(entryYear.Text);
-                if (year < 0 || year > 2020)
+                if (year < 0|| year > 2020)
                 {
                     DisplayAlert("Year", "Invalid Entry\n  Enter between 1 - 2020", "Retry");
                 }//innerIf
             }//if
         }
+
+        //Main Calculation
         private void Date_Of_Birth(object sender, EventArgs args)
         {
             // declaration of variables
             int day = 0, day2 = 0, month = 0, month2 = 0;
             int centuryYear = 0, centuryYear2 = 0, decadeYear = 0, decadeYear2 = 0;
-            int numerology = 0, breakdown=0, breakdown2=0, test=0;
+            int numerology = 0, breakdown=0, breakdown2=0;
 
             if (string.IsNullOrWhiteSpace(entryDay.Text) || string.IsNullOrWhiteSpace(entryMonth.Text) || string.IsNullOrWhiteSpace(entryYear.Text))
             {
@@ -161,7 +168,7 @@ namespace Numerology
                 decadeYear2 = decadeYear % 10;
                 decadeYear = (decadeYear - decadeYear2) / 10;
 
-                test = numerology += centuryYear + centuryYear2 + decadeYear + decadeYear2;
+                numerology += centuryYear + centuryYear2 + decadeYear + decadeYear2;
 
                 if (numerology > 9 && !(numerology == 11) && !(numerology == 22) && !(numerology == 33))
                 {
@@ -183,7 +190,8 @@ namespace Numerology
                 //return String format
                 numerologyCalc.Text = " " + numerology;
 
-               // testing.Text = " day  is  " + day + "\n month is " + month + "\n year is " + centuryYear + "\n numerology is " + test;
+                //return previous date
+                prevDate.Text = " \nLast Entered\n   " + day + " : " + month + " : " + entryYear.Text;
 
                 //call answerPage
                 AnswerPage();

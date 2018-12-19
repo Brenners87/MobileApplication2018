@@ -12,6 +12,7 @@ namespace Numerology
             InitializeComponent();
 
             // MainPage = new MainPage();
+            //page navigation
             MainPage = new NavigationPage(new MainPage());
         }
 

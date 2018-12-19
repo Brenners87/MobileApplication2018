@@ -12,12 +12,15 @@ namespace Numerology
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AnswerPage : ContentPage
 	{
+        //Data passing Main to Answer
 		public AnswerPage (string number)
 		{
 			InitializeComponent ();
             calcNumber.Text = number;
             Explanation(calcNumber.Text);
         }
+
+        //Definitions of calculated number
         private void Explanation(string number)
         {
             int numerologyNum = 0;
@@ -92,6 +95,7 @@ namespace Numerology
                     challenge = "\n\n";
                     break;
             }
+            //Return definitions
             personality.Text = person;
             work_career.Text = work;
             challenges.Text = challenge;

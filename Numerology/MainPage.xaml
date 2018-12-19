@@ -10,12 +10,15 @@
         <!--fields for value entry -->
         <Label Text="Enter Date of Birth" TextColor="LightCyan" FontAttributes="Italic" FontSize="25"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
         <Grid  HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="300">
+            <!--Day -->
             <Grid HorizontalOptions="Start" WidthRequest="96">
                 <Entry BackgroundColor="Ivory"  x:Name="entryDay"  Placeholder="D/DD" HorizontalTextAlignment="Center" Keyboard="Numeric" TextChanged="DayValid" />
             </Grid>
+            <!--Month-->
             <Grid HorizontalOptions="Center" WidthRequest="90" >
                 <Entry BackgroundColor="Ivory"  x:Name="entryMonth"  Placeholder="M/MM" HorizontalTextAlignment="Center" Keyboard="Numeric" TextChanged="MonthValid"/>
             </Grid>
+            <!--Year-->
             <Grid  HorizontalOptions="End" WidthRequest="100">
                 <Entry BackgroundColor="Ivory"  x:Name="entryYear"  Placeholder="YYYYY" HorizontalTextAlignment="Center" Keyboard="Numeric" TextChanged="YearValid"/>
             </Grid>
@@ -23,7 +26,8 @@
         <Button TextColor="AliceBlue" Text="Answer" FontSize="20" HorizontalOptions="Center" VerticalOptions="Start" Clicked="Date_Of_Birth" />
         <!--Numerology calculation return-->
         <Label x:Name="numerologyCalc" FontSize="1" TextColor="Black" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-       <!-- <Label x:Name="testing" FontSize="10" TextColor="white" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />-->
+        <!--Previous Date-->
+        <Label x:Name="prevDate" TextColor="Orange" FontAttributes="Italic" FontSize="15"  HorizontalOptions="Center" />
     </StackLayout>
 
 </ContentPage>
